@@ -12,7 +12,7 @@ export default class DownloaderRoutes extends CommonRoutesConfig {
     }
 
     configureRoutes(): Application {
-        this.app.post('/v1/downloader/video', (req: Request, res: Response) => {
+        this.app.post('/api/v1/downloader/video', (req: Request, res: Response) => {
 
             if (!req.body || !req.body.videoAddress)
                 return res.status(400);

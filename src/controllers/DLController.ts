@@ -7,7 +7,7 @@ export default class DLController {
 
     constructor() {
         (async () => {
-            await YTDlpWrap.downloadFromGithub();
+            // await YTDlpWrap.downloadFromGithub();
             this.downloader = new YTDlpWrap('./yt-dlp.exe');
         })()
     }

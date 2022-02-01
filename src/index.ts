@@ -10,11 +10,14 @@ const HOSTNAME = process.env.HOSTNAME || 'http://localhost'
 const app = express();
 const routes: Array<CommonRouteConfig> = [];
 
+app.use(cors({
+    origin: '*'
+}));
+
 app.get('/', (req, res) => res.send('Welcome!'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ origin: ['http://localhost:3000'] }));
 
 routes.push(new TiktokRoutes(app));
 
