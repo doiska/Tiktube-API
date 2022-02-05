@@ -10,9 +10,7 @@ const HOSTNAME = process.env.HOSTNAME || 'http://localhost'
 const app = express();
 const routes: Array<CommonRouteConfig> = [];
 
-app.use(cors({
-    origin: '*'
-}));
+app.use(cors());
 
 app.get('/', (req, res) => res.send('Welcome!'));
 

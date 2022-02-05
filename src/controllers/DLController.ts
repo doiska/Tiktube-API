@@ -9,11 +9,15 @@ export default class DLController {
         (async () => {
             // await YTDlpWrap.downloadFromGithub();
             this.downloader = new YTDlpWrap('./yt-dlp.exe');
+
+            if(!this.downloader)
+                return console.log(`Could'nt instanciate YTDLWrapper`);
         })()
     }
 
     async fetchVideoByAddress(address: string): Promise<IVideo | string> {
         try {
+            console.log(`Address ${address}`)
             const result = await this.downloader.getVideoInfo(address);
             const { id, title, uploader, url, thumbnail, view_count } = result;
 
