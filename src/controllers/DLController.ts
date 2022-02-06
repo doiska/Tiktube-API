@@ -1,5 +1,5 @@
 import YTDlpWrap from 'yt-dlp-wrap';
-import { IVideo, Video } from "../interfaces/Video";
+import { IVideo } from "../interfaces/Video";
 
 export default class DLController {
 
@@ -17,19 +17,21 @@ export default class DLController {
 
     async fetchVideoByAddress(address: string): Promise<IVideo | string> {
         try {
-            console.log(`Address ${address}`)
             const result = await this.downloader.getVideoInfo(address);
-            const { id, title, uploader, url, thumbnail, view_count } = result;
+            const { id, title, uploader, url, thumbnail, view_count, formats, height, width } = result;
 
-            console.log(title);
-            return new Video({
+            console.log(result);
+            return {
                 id,
                 text: title,
-                author: { name: uploader },
+                author: uploader,
                 videoUrl: url,
                 imageUrl: thumbnail,
-                views: view_count
-            })
+                views: view_count,
+                formats: formats,
+                height: height,
+                width: width
+            } as IVideo;
         } catch (error) {
             console.log(error);
             return 'Não foi possível processar o vídeo.';

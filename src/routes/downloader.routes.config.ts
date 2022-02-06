@@ -17,8 +17,6 @@ export default class DownloaderRoutes extends CommonRoutesConfig {
             if (!req.body || !req.body.videoAddress)
                 return res.status(400);
 
-            console.log(req.body.videoAddress)
-
             this.controller.fetchVideoByAddress(req.body.videoAddress)
                 .then((result) => res.status(200).json(result))
                 .catch((e) => res.status(400))
