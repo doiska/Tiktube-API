@@ -28,9 +28,9 @@ const downloader_routes_config_1 = __importDefault(require("./routes/downloader.
 const https = __importStar(require("https"));
 const PORT = process.env.PORT || 3000;
 const HOSTNAME = process.env.HOSTNAME || 'http://localhost';
-const app = (0, express_1.default)();
+const app = express_1.default();
 const routes = [];
-app.use((0, cors_1.default)());
+app.use(cors_1.default());
 app.get('/', (req, res) => res.send('Welcome!'));
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
