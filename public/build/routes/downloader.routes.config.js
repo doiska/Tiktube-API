@@ -12,9 +12,9 @@ class DownloaderRoutes extends common_routes_config_1.default {
     }
     configureRoutes() {
         this.app.post('/api/v1/downloader/video', (req, res) => {
+            console.log(req);
             if (!req.body || !req.body.videoAddress)
                 return res.status(400);
-            console.log(req.body.videoAddress);
             this.controller.fetchVideoByAddress(req.body.videoAddress)
                 .then((result) => res.status(200).json(result))
                 .catch((e) => res.status(400));
