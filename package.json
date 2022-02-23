@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.ts",
     "scripts": {
-        "start": "node public/index.js",
+        "start": "npx tsc && node public/index.js",
         "test": "echo \"Error: no test specified\" && exit 1",
         "build": "npx tsc"
     },
