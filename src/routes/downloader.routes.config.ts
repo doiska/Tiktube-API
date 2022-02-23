@@ -3,7 +3,7 @@ import { Application, Request, Response } from 'express';
 import DLController from "../controllers/DLController";
 
 export default class DownloaderRoutes extends CommonRoutesConfig {
-    
+
     private controller: DLController;
 
     constructor(app: Application) {
@@ -14,6 +14,7 @@ export default class DownloaderRoutes extends CommonRoutesConfig {
     configureRoutes(): Application {
         this.app.post('/api/v1/downloader/video', (req: Request, res: Response) => {
 
+            console.log(req);
             if (!req.body || !req.body.videoAddress)
                 return res.status(400);
 

@@ -17,12 +17,12 @@ app.use(cors())
 app.get('/', (req, res) => res.send('Welcome!'));
 
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
 app.post('/api/v1/download', (req, res) => {
 
 
-    const {fileName, url} = req.body;
+    const { fileName, url } = req.body;
 
     const externalReq = https.request(url, (externalres) => {
 

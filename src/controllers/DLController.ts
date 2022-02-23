@@ -7,18 +7,19 @@ export default class DLController {
 
     constructor() {
         (async () => {
-            // await YTDlpWrap.downloadFromGithub();
-            this.downloader = new YTDlpWrap('./yt-dlp.exe');
-
-            if(!this.downloader)
-                return console.log(`Could'nt instanciate YTDLWrapper`);
+            try {
+                await YTDlpWrap.downloadFromGithub();
+                this.downloader = new YTDlpWrap('./yt-dlp');
+            } catch (e) {
+                console.error(e);
+            }
         })()
     }
 
     async fetchVideoByAddress(address: string): Promise<IVideo | string> {
         try {
             const result = await this.downloader.getVideoInfo(address);
-            const { id, title, uploader, url, thumbnail, view_count, formats, height, width } = result;
+            const { id, title, uploader, url, thumbnail, view_count, formats, height, width, fileName } = result;
 
             console.log(result);
             return {
@@ -30,7 +31,8 @@ export default class DLController {
                 views: view_count,
                 formats: formats,
                 height: height,
-                width: width
+                width: width,
+                fileName: fileName
             } as IVideo;
         } catch (error) {
             console.log(error);
